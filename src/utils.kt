@@ -1,3 +1,7 @@
+import org.jetbrains.kotlinx.multik.api.mk
+import org.jetbrains.kotlinx.multik.api.ndarray
+import org.jetbrains.kotlinx.multik.ndarray.data.D2
+import org.jetbrains.kotlinx.multik.ndarray.data.MutableMultiArray
 import java.io.File
 import java.io.IOException
 
@@ -14,4 +18,13 @@ fun readFileLines(filePath: String, onLine: (String) -> Unit) {
     } catch (e: IOException) {
         println("Error reading file: ${e.message}")
     }
+}
+
+
+fun matrixFromFile(path: String): MutableMultiArray<Int, D2> {
+    val lines = File(path).readLines()
+    val data = lines.map { line ->
+        line.map { if (it == '@') 1 else 0 }
+    }
+    return mk.ndarray(data)
 }

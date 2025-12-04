@@ -1,0 +1,31 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.2.21'
+}
+kotlin {
+    jvmToolchain(23)
+}
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(23)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.jetbrains.kotlinx:multik-core:0.2.2"
+
+    implementation("org.jetbrains.kotlinx:multik-core:0.2.2")
+    implementation("org.jetbrains.kotlinx:multik-default:0.2.2") // or multik-openblas, multik-jvm
+}
+
+sourceSets {
+    main {
+        kotlin {
+            srcDirs = ['src']
+        }
+    }
+}
